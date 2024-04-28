@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Şube Listeleri</h1>
+            <h1>Marka Listeleri</h1>
           </div>
           
         </div>
@@ -34,7 +34,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Şubeler</h3>
+                <h3 class="card-title">Markalar</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

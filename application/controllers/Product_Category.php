@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class branches extends CI_Controller {
+class Product_Category extends CI_Controller {
 
 	public $viewFolder = "";
 
@@ -9,14 +9,14 @@ class branches extends CI_Controller {
     {
 	   parent::__construct();
 
-	   $this->viewFolder="branches_v";
-	   $this->load->model("branches_model");
+	   $this->viewFolder="product_category_v";
+	   $this->load->model("product_category_model");
     }
 
 	public function index()
 	{
-		$this->load->model('branches_model');
-		$items = $this->branches_model->getAll();
+		$this->load->model('product_category_model');
+		$items = $this->product_category_model->getAll();
 
 		//print_r($items);
 
@@ -25,7 +25,10 @@ class branches extends CI_Controller {
 		$viewData->subViewFolder = "list";
 		$viewData->items = $items;
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+		
 	}
+	
 	public function new_Form()
 		{
 			$viewData = new stdClass();
@@ -41,8 +44,7 @@ class branches extends CI_Controller {
 			$this->load->library("form_validation");
 	
 			//kurallar
-			$this->form_validation->set_rules("title", "marka adı ","required|trim");
-			$this->form_validation->set_rules("adress", "Adress ","required|trim");
+			$this->form_validation->set_rules("title", "Ürün Katagori Adı ","required|trim");
 			//mesajlar
 			$this->form_validation->set_message(
 				array(
@@ -55,13 +57,11 @@ class branches extends CI_Controller {
 			if($validate){
 				//echo "Kayıt başarılı";
 				$data=array(
-					"title"=>$this->input->post("title"),
-					"adress"=>$this->input->post("adress")
-					
+					"title"=>$this->input->post("title")
 				);
-				$insert=$this->branches_model->add($data);
+				$insert=$this->product_category_model->add($data);
 				if($insert){
-					redirect(base_url("branches"));
+					redirect(base_url("Product_Category"));
 				}
 				else{
 					echo "Kayıt sırasında hata";
@@ -83,10 +83,10 @@ class branches extends CI_Controller {
 			$data =  array(
 				"id"=> $id
 			);
-			$this->branches_model->delete($data);
+			$this->product_category_model->delete($data);
 
 			//todo alert sistemi entegre edilicek.
-			redirect(base_url("branches"));
+			redirect(base_url("Product_Category"));
 		}
 		/*public function new_form($id)
 		{
@@ -98,7 +98,7 @@ class branches extends CI_Controller {
 		}*/
 		public function update_form($id)
 		{
-			$item= $this->branches_model->get(array(
+			$item= $this->product_category_model->get(array(
 				"id"=> $id
 			)
 			);
@@ -113,8 +113,7 @@ class branches extends CI_Controller {
 			$this->load->library("form_validation");
 	
 			//kurallar
-			$this->form_validation->set_rules("title", "marka adı ","required|trim");
-			$this->form_validation->set_rules("adress", "Adress ","required|trim");
+			$this->form_validation->set_rules("title", "Ürün Katagori Adı ","required|trim");
 			//mesajlar
 			$this->form_validation->set_message(
 				array(
@@ -127,10 +126,9 @@ class branches extends CI_Controller {
 			if($validate){
 				//echo "Kayıt başarılı";
 				$data=array(
-					"title"=>$this->input->post("title"),
-					"adress"=>$this->input->post("adress")
+					"title"=>$this->input->post("title")
 				);
-			$update=$this->branches_model->update(
+			$update=$this->product_category_model->update(
 				array(
 					"id"=>$id
 				),
@@ -138,7 +136,7 @@ class branches extends CI_Controller {
 			);
 			if($update)
 			{
-				redirect(base_url("branches"));
+				redirect(base_url("Product_Category"));
 			}
 			else
 			{
@@ -146,7 +144,7 @@ class branches extends CI_Controller {
 			}
 			}
 			else{
-				$item=$this->branches_model->get(
+				$item=$this->product_category_model->get(
 					array(
 						"id"=>$id
 					)
@@ -159,4 +157,5 @@ class branches extends CI_Controller {
 					$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 			}
 		}
-}
+		
+}?>
