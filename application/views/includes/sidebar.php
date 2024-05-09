@@ -54,9 +54,17 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url("branches")?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tags"></i>
               <p>
                 Marka İşlemleri
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url("users")?>" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
+              <p>
+                Kullanıcılar
               </p>
             </a>
           </li>
